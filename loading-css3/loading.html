@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>饼状loading效果</title>
+	<style>
+	  .circle {
+	  	position: relative;
+	  	width: 300px;
+			height: 500px;
+			border: 1px solid #e5e5e5;
+			background: #f8f8f8;
+	  }
+		
+		/* 3/4外圆 */
+		.circle .outer {
+			position: absolute;
+			top: 50px;
+			left: 50px;
+			/*transform: translate(-50%,-50%);*/
+			width: 150px;
+			height: 150px;
+			border-radius: 50%;
+			border: 2px solid #f88bbc;
+			border-top-color: transparent; /* 让border1个方向的颜色设为透明,即可形成 3/4圆  */
+			
+			animation: outer 2s linear infinite;
+		}
+		
+		/*内圆  左右半圆*/
+		.circle .half-circle {
+			position: absolute;
+			top: 80px;
+			left: 80px;
+			transform: translate(-50%,-50%);
+			width: 0px;
+			height: 0px;
+			border: 50px solid transparent;
+			border-radius: 50px;
+			/*transform: rotate(90deg);*/
+			
+			/*animation: inner 4s linear infinite;*/
+		}
+		.circle .half-left {
+			border-left-color: #f88bbc;
+			border-bottom-color: #f88bbc;
+			transform: rotate(45deg);
+			
+			animation: showLeft 3s linear infinite;
+		}
+		.circle .half-right {
+			border-bottom-color: #e84733;
+			border-left-color: #e84733;
+			transform: rotate(-135deg);
+		}
+		@keyframes outer {
+			0% {
+				transform: rotate(0deg);
+			}
+			100% {
+				transform: rotate(360deg);
+			}
+		}
+		@keyframes showLeft {
+			0%  {transform: rotate(45deg);z-index: 6;}
+			25% {transform: rotate(-135deg);} /*开始等待*/
+			50% {transform: rotate(-135deg);z-index: 6;} 
+			50% {transform: rotate(-135deg);z-index: 5;} 
+			75% {transform: rotate(-315deg);z-index: 5;} 
+			100% {transform: rotate(-315deg);z-index: 5;} 
+			/*to  {transform: rotate(-315deg);z-index: 6}*/
+		}
+	</style>
+</head>
+<body>
+	<div class="circle">
+		<div class="outer"></div>
+		<div class="half-left half-circle"></div>
+		<div class="half-right half-circle"></div>
+	</div>
+</body>
+</html>
