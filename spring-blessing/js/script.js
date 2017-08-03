@@ -32,7 +32,7 @@ window.onload = function(){
 		setTimeout(function(){
 			 page2.setAttribute("class","fadeOut");
 			 page3.setAttribute("class","fadeIn")
-		},5500)
+		},3500)
 	})
 	
 }
